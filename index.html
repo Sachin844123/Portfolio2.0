@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sachin Singh | Cybersecurity & Tech Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --neon-blue: #0ff0fc;
+      --cyber-green: #00ff41;
+      --matte-black: #121212;
+      --cyber-purple: #bc13fe;
+      --terminal-green: #00ff00;
+      --dark-gray: #1a1a1a;
+      --light-gray: #e0e0e0;
+      --accent: #ff0080;
+      --glow: 0 0 8px var(--neon-blue), 0 0 16px var(--cyber-green);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: var(--matte-black);
+      color: var(--light-gray);
+      font-family: 'Roboto Mono', monospace;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    body[data-theme="light"] {
+      background: #f5f7fa;
+      color: #222;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      color: var(--neon-blue);
+      text-shadow: 0 0 8px var(--neon-blue);
+    }
+    a {
+      color: var(--neon-blue);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    a:hover {
+      color: var(--cyber-green);
+      text-shadow: 0 0 8px var(--cyber-green);
+    }
+    /* Matrix Background Animation */
+    #matrix-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.25;
+    }
+    /* Glowing border for sections */
+    .glow-box {
+      border: 2px solid var(--neon-blue);
+      border-radius: 18px;
+      box-shadow: 0 0 24px var(--neon-blue), 0 0 48px var(--cyber-green);
+      background: rgba(18,18,18,0.85);
+      margin: 2rem 0;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .profile-holo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem auto;
+      box-shadow: 0 0 32px var(--cyber-green), 0 0 64px var(--neon-blue);
+      background: linear-gradient(135deg, rgba(0,255,252,0.2), rgba(0,255,65,0.1));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: float 3s ease-in-out infinite;
+    }
+    .profile-holo img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 3px solid var(--cyber-green);
+      box-shadow: 0 0 16px var(--neon-blue);
+      object-fit: cover;
+      background: #222;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0);}
+      50% { transform: translateY(-18px);}
+    }
+    .hero-title {
+      font-size: 2.8rem;
+      color: var(--neon-blue);
+      text-shadow: 0 0 16px var(--neon-blue);
+      margin-bottom: 0.5rem;
+    }
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--cyber-green);
+      margin-bottom: 2rem;
+      text-shadow: 0 0 8px var(--cyber-green);
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    .hero-cta a {
+      padding: 0.8rem 2.2rem;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(90deg, var(--neon-blue), var(--cyber-green));
+      color: #121212;
+      font-weight: bold;
+      box-shadow: 0 0 12px var(--neon-blue);
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+      text-shadow: none;
+    }
+    .hero-cta a:hover {
+      background: linear-gradient(90deg, var(--cyber-green), var(--neon-blue));
+      color: var(--neon-blue);
+      box-shadow: 0 0 24px var(--cyber-green);
+    }
+    /* Section Titles */
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--cyber-green);
+      text-shadow: 0 0 8px var(--cyber-green);
+      text-align: center;
+    }
+    /* About Me */
+    .about-bio {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: var(--light-gray);
+      text-align: center;
+    }
+    .traits-list {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .trait {
+      background: rgba(0,255,252,0.08);
+      border: 1px solid var(--cyber-green);
+      border-radius: 12px;
+      padding: 0.7rem 1.2rem;
+      color: var(--cyber-green);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      box-shadow: 0 0 8px var(--cyber-green);
+      margin-bottom: 0.5rem;
+    }
+    /* Timeline */
+    .timeline {
+      position: relative;
+      margin: 2rem auto;
+      max-width: 700px;
+      padding-left: 30px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(var(--neon-blue), var(--cyber-green));
+      border-radius: 2px;
+      z-index: 0;
+    }
+    .timeline-event {
+      position: relative;
+      margin-bottom: 2.5rem;
+      padding-left: 40px;
+      z-index: 1;
+      animation: timelineFadeIn 1s;
+    }
+    .timeline-event:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      width: 18px;
+      height: 18px;
+      background: var(--cyber-green);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--neon-blue);
+      border: 2px solid var(--neon-blue);
+      z-index: 2;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 var(--cyber-green);}
+      70% { box-shadow: 0 0 0 10px rgba(0,255,65,0);}
+      100% { box-shadow: 0 0 0 0 rgba(0,255,65,0);}
+    }
+    @keyframes timelineFadeIn {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .timeline-content {
+      background: rgba(0,255,252,0.06);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      color: var(--light-gray);
+      box-shadow: 0 0 8px var(--neon-blue);
+      font-size: 1rem;
+    }
+    /* Animated Quote */
+    .quote-anim {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--cyber-purple);
+      font-size: 1.1rem;
+      text-align: center;
+      margin: 2rem 0 0.5rem 0;
+      text-shadow: 0 0 8px var(--cyber-purple);
+      letter-spacing: 1px;
+      animation: flicker 2.5s infinite alternate;
+    }
+    @keyframes flicker {
+      0%, 100% { opacity: 1;}
+      50% { opacity: 0.7;}
+    }
+    /* Skills & Tools */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .skill-card {
+      background: rgba(0,255,252,0.07);
+      border: 1.5px solid var(--cyber-green);
+      border-radius: 14px;
+      padding: 1.2rem 1rem;
+      box-shadow: 0 0 12px var(--neon-blue);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-title {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--cyber-green);
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 8px var(--cyber-green);
+    }
+    .skill-meter {
+      width: 100%;
+      height: 12px;
+      background: #232323;
+      border-radius: 8px;
+      margin-bottom: 0.7rem;
+      overflow: hidden;
+      box-shadow: 0 0 6px var(--neon-blue);
+    }
+    .skill-bar {
+      height: 100%;
+      border-radius: 8px;
+      background: linear-gradient(90deg, var(--neon-blue), var(--cyber-green));
+      box-shadow: 0 0 8px var(--cyber-green);
+      transition: width 1.2s cubic-bezier(.77,0,.18,1);
+    }
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+    .skill-item {
+      background: rgba(0,255,252,0.12);
+      border: 1px solid var(--cyber-green);
+      border-radius: 8px;
+      padding: 0.3rem 0.8rem;
+      color: var(--cyber-green);
+      font-size: 0.95rem;
+      font-family: 'Roboto Mono', monospace;
+      margin-bottom: 0.3rem;
+      box-shadow: 0 0 4px var(--cyber-green);
+    }
+    /* Projects Carousel */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto 2rem auto;
+      perspective: 1200px;
+      min-height: 340px;
+    }
+    .carousel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      transition: transform 0.7s cubic-bezier(.77,0,.18,1);
+    }
+    .project-card {
+      background: rgba(0,255,252,0.09);
+      border: 2px solid var(--neon-blue);
+      border-radius: 16px;
+      box-shadow: 0 0 16px var(--cyber-green);
+      padding: 1.5rem 1.2rem;
+      min-width: 260px;
+      max-width: 320px;
+      text-align: left;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      z-index: 1;
+    }
+    .project-card:hover {
+      transform: scale(1.06) rotateY(6deg);
+      box-shadow: 0 0 32px var(--neon-blue);
+      z-index: 2;
+    }
+    .project-title {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--neon-blue);
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 8px var(--neon-blue);
+    }
+    .project-tags {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.7rem;
+      flex-wrap: wrap;
+    }
+    .project-tag {
+      background: rgba(0,255,65,0.13);
+      color: var(--cyber-green);
+      border-radius: 6px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.85rem;
+      font-family: 'Roboto Mono', monospace;
+      box-shadow: 0 0 4px var(--cyber-green);
+    }
+    .project-desc {
+      color: var(--light-gray);
+      font-size: 1rem;
+      margin-bottom: 0.7rem;
+    }
+    .project-links a {
+      margin-right: 1rem;
+      color: var(--cyber-green);
+      font-size: 1.1rem;
+      text-shadow: 0 0 6px var(--cyber-green);
+    }
+    /* Project Modal */
+    .modal-bg {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(18,18,18,0.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-bg.active { display: flex; }
+    .modal-content {
+      background: #181a1b;
+      border: 2px solid var(--neon-blue);
+      border-radius: 18px;
+      box-shadow: 0 0 32px var(--cyber-green);
+      padding: 2rem 2.5rem;
+      max-width: 540px;
+      width: 90vw;
+      color: var(--light-gray);
+      position: relative;
+      animation: modalIn 0.5s;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.8);}
+      to { opacity: 1; transform: scale(1);}
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      font-size: 1.5rem;
+      color: var(--cyber-green);
+      cursor: pointer;
+      background: none;
+      border: none;
+      outline: none;
+      transition: color 0.2s;
+    }
+    .modal-close:hover { color: var(--neon-blue);}
+    .modal-screenshot {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 12px var(--neon-blue);
+    }
+    .modal-stack, .modal-challenges {
+      margin-bottom: 1rem;
+    }
+    /* Certifications Timeline */
+    .cert-timeline {
+      position: relative;
+      margin: 2rem auto;
+      max-width: 700px;
+      padding-left: 30px;
+    }
+    .cert-timeline::before {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(var(--cyber-purple), var(--cyber-green));
+      border-radius: 2px;
+      z-index: 0;
+    }
+    .cert-event {
+      position: relative;
+      margin-bottom: 2.2rem;
+      padding-left: 40px;
+      z-index: 1;
+    }
+    .cert-dot {
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      width: 18px;
+      height: 18px;
+      background: var(--cyber-purple);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--cyber-green);
+      border: 2px solid var(--cyber-green);
+      z-index: 2;
+      animation: pulse 2s infinite;
+    }
+    .cert-content {
+      background: rgba(188,19,254,0.08);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      color: var(--light-gray);
+      box-shadow: 0 0 8px var(--cyber-purple);
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .cert-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #222;
+      border: 2px solid var(--cyber-purple);
+      box-shadow: 0 0 8px var(--cyber-purple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--cyber-purple);
+    }
+    .cert-img {
+      width: 80px;
+      border-radius: 8px;
+      margin-left: 1rem;
+      box-shadow: 0 0 8px var(--cyber-purple);
+    }
+    /* Gamified XP Bar */
+    .xp-bar-container {
+      width: 100%;
+      background: #232323;
+      border-radius: 8px;
+      margin: 1rem 0;
+      height: 18px;
+      box-shadow: 0 0 8px var(--cyber-green);
+      overflow: hidden;
+    }
+    .xp-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--cyber-green), var(--neon-blue));
+      border-radius: 8px;
+      width: 70%;
+      box-shadow: 0 0 12px var(--cyber-green);
+      transition: width 1.2s cubic-bezier(.77,0,.18,1);
+    }
+    /* Blogs / Articles */
+    .blog-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .blog-card {
+      background: rgba(0,255,252,0.07);
+      border: 1.5px solid var(--cyber-green);
+      border-radius: 14px;
+      padding: 1.2rem 1rem;
+      box-shadow: 0 0 12px var(--neon-blue);
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .blog-card:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 24px var(--cyber-green);
+    }
+    .blog-title {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--neon-blue);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 8px var(--neon-blue);
+    }
+    .blog-tags {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.7rem;
+      flex-wrap: wrap;
+    }
+    .blog-tag {
+      background: rgba(0,255,65,0.13);
+      color: var(--cyber-green);
+      border-radius: 6px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.85rem;
+      font-family: 'Roboto Mono', monospace;
+      box-shadow: 0 0 4px var(--cyber-green);
+    }
+    .blog-desc {
+      color: var(--light-gray);
+      font-size: 1rem;
+      margin-bottom: 0.7rem;
+    }
+    .blog-link {
+      color: var(--cyber-green);
+      font-size: 1.1rem;
+      text-shadow: 0 0 6px var(--cyber-green);
+    }
+    /* Resume Section */
+    .resume-section {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .resume-btns {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+    .resume-btn {
+      padding: 0.7rem 2rem;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(90deg, var(--neon-blue), var(--cyber-green));
+      color: #121212;
+      font-weight: bold;
+      box-shadow: 0 0 12px var(--neon-blue);
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+      text-shadow: none;
+    }
+    .resume-btn:hover {
+      background: linear-gradient(90deg, var(--cyber-green), var(--neon-blue));
+      color: var(--neon-blue);
+      box-shadow: 0 0 24px var(--cyber-green);
+    }
+    /* Contact Section */
+    .contact-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      justify-content: center;
+      align-items: flex-start;
+      margin: 2rem 0;
+    }
+    .contact-form {
+      background: rgba(0,255,252,0.09);
+      border: 2px solid var(--neon-blue);
+      border-radius: 16px;
+      box-shadow: 0 0 16px var(--cyber-green);
+      padding: 2rem 1.5rem;
+      min-width: 320px;
+      max-width: 400px;
+      flex: 1 1 320px;
+      position: relative;
+      z-index: 1;
+    }
+    .contact-form label {
+      display: block;
+      margin-bottom: 0.3rem;
+      color: var(--cyber-green);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      margin-bottom: 1.2rem;
+      border-radius: 8px;
+      border: 1.5px solid var(--neon-blue);
+      background: #181a1b;
+      color: var(--light-gray);
+      font-size: 1rem;
+      font-family: 'Roboto Mono', monospace;
+      outline: none;
+      transition: border 0.3s;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      border: 1.5px solid var(--cyber-green);
+      box-shadow: 0 0 8px var(--cyber-green);
+    }
+    .contact-form button {
+      padding: 0.7rem 2rem;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(90deg, var(--neon-blue), var(--cyber-green));
+      color: #121212;
+      font-weight: bold;
+      box-shadow: 0 0 12px var(--neon-blue);
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+      text-shadow: none;
+    }
+    .contact-form button:hover {
+      background: linear-gradient(90deg, var(--cyber-green), var(--neon-blue));
+      color: var(--neon-blue);
+      box-shadow: 0 0 24px var(--cyber-green);
+    }
+    .captcha-box {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .contact-map {
+      min-width: 320px;
+      max-width: 400px;
+      flex: 1 1 320px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 0 16px var(--neon-blue);
+      position: relative;
+      background: #181a1b;
+      height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* City Glow Effect */
+    .city-glow {
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 60% 70%, var(--cyber-green) 0%, transparent 60%);
+      position: absolute;
+      z-index: 0;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+    /* Live Chatbot */
+    .chatbot-widget {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 2000;
+      background: rgba(18,18,18,0.98);
+      border: 2px solid var(--neon-blue);
+      border-radius: 18px;
+      box-shadow: 0 0 24px var(--cyber-green);
+      width: 340px;
+      max-width: 90vw;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      font-size: 1rem;
+      transition: box-shadow 0.3s;
+    }
+    .chatbot-header {
+      background: linear-gradient(90deg, var(--neon-blue), var(--cyber-green));
+      color: #181a1b;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      padding: 0.7rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .chatbot-messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      background: #181a1b;
+      color: var(--light-gray);
+      max-height: 260px;
+    }
+    .chatbot-input {
+      display: flex;
+      border-top: 1px solid var(--neon-blue);
+      background: #181a1b;
+    }
+    .chatbot-input input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      color: var(--light-gray);
+      padding: 0.7rem 1rem;
+      font-size: 1rem;
+      font-family: 'Roboto Mono', monospace;
+      outline: none;
+    }
+    .chatbot-input button {
+      background: none;
+      border: none;
+      color: var(--cyber-green);
+      font-size: 1.3rem;
+      padding: 0 1rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .chatbot-input button:hover { color: var(--neon-blue);}
+    /* Terminal Mode */
+    .terminal-section {
+      background: #181a1b;
+      border: 2px solid var(--terminal-green);
+      border-radius: 16px;
+      box-shadow: 0 0 24px var(--terminal-green);
+      padding: 2rem 1.5rem;
+      margin: 2rem 0;
+      font-family: 'Roboto Mono', monospace;
+      color: var(--terminal-green);
+      min-height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+    .terminal-header {
+      color: var(--neon-blue);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 8px var(--neon-blue);
+    }
+    .terminal-output {
+      min-height: 80px;
+      margin-bottom: 1rem;
+      white-space: pre-line;
+      font-size: 1rem;
+    }
+    .terminal-input-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .terminal-prompt {
+      color: var(--cyber-green);
+      font-weight: bold;
+    }
+    .terminal-input {
+      background: transparent;
+      border: none;
+      color: var(--light-gray);
+      font-size: 1rem;
+      font-family: 'Roboto Mono', monospace;
+      outline: none;
+      flex: 1;
+    }
+    /* GitHub Stats */
+    .github-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    .github-card {
+      background: rgba(0,255,252,0.07);
+      border: 1.5px solid var(--cyber-green);
+      border-radius: 14px;
+      padding: 1.2rem 1rem;
+      box-shadow: 0 0 12px var(--neon-blue);
+      min-width: 260px;
+      max-width: 340px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Code Playground */
+    .playground-section {
+      background: #181a1b;
+      border: 2px solid var(--cyber-purple);
+      border-radius: 16px;
+      box-shadow: 0 0 24px var(--cyber-purple);
+      padding: 2rem 1.5rem;
+      margin: 2rem 0;
+      font-family: 'Roboto Mono', monospace;
+      color: var(--light-gray);
+      min-height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+    .playground-header {
+      color: var(--cyber-purple);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 8px var(--cyber-purple);
+    }
+    .playground-editor {
+      width: 100%;
+      min-height: 120px;
+      background: #232323;
+      color: var(--light-gray);
+      border-radius: 8px;
+      border: 1.5px solid var(--cyber-purple);
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      outline: none;
+      resize: vertical;
+    }
+    .playground-btns {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .playground-btn {
+      padding: 0.5rem 1.5rem;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(90deg, var(--cyber-purple), var(--neon-blue));
+      color: #121212;
+      font-weight: bold;
+      box-shadow: 0 0 12px var(--cyber-purple);
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+      text-shadow: none;
+    }
+    .playground-btn:hover {
+      background: linear-gradient(90deg, var(--neon-blue), var(--cyber-purple));
+      color: var(--cyber-purple);
+      box-shadow: 0 0 24px var(--cyber-purple);
+    }
+    .playground-output {
+      background: #232323;
+      color: var(--cyber-green);
+      border-radius: 8px;
+      border: 1.5px solid var(--cyber-green);
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1rem;
+      padding: 1rem;
+      min-height: 40px;
+      white-space: pre-line;
+    }
+    /* Dark/Light Mode Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 32px;
+      right: 32px;
+      z-index: 3000;
+      background: #181a1b;
+      border: 2px solid var(--neon-blue);
+      border-radius: 50%;
+      width: 54px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 16px var(--cyber-green);
+      cursor: pointer;
+      transition: box-shadow 0.3s, border 0.3s;
+      font-size: 1.7rem;
+      color: var(--neon-blue);
+      animation: glitch 1.5s infinite alternate;
+    }
+    @keyframes glitch {
+      0% { box-shadow: 0 0 8px var(--neon-blue);}
+      50% { box-shadow: 0 0 24px var(--cyber-green);}
+      100% { box-shadow: 0 0 8px var(--neon-blue);}
+    }
+    /* Responsive */
+    @media (max-width: 900px) {
+      .carousel-container { min-height: 420px;}
+      .contact-section { flex-direction: column; align-items: stretch;}
+      .github-stats { flex-direction: column;}
+    }
+    @media (max-width: 600px) {
+      .glow-box, .modal-content, .contact-form, .contact-map, .terminal-section, .playground-section {
+        padding: 1rem 0.5rem;
+      }
+      .carousel-container { min-height: 320px;}
+      .chatbot-widget { right: 8px; bottom: 8px;}
+      .theme-toggle { right: 8px; top: 8px;}
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix-bg"></canvas>
+  <div class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+    <i class="fa-solid fa-moon"></i>
+  </div>
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="profile-holo">
+      <img src="https://avatars.githubusercontent.com/u/99149209?v=4" alt="Sachin Singh Profile Picture">
+    </div>
+    <div class="hero-title">Sachin Singh</div>
+    <div class="hero-subtitle">Aspiring Ethical Hacker | Cybersecurity Learner | Tech Visionary</div>
+    <div class="hero-cta">
+      <a href="#projects"><i class="fa-solid fa-folder-open"></i> View My Work</a>
+      <a href="Sachin_Singh_Resume.pdf" download><i class="fa-solid fa-file-arrow-down"></i> Download Resume</a>
+      <a href="#contact"><i class="fa-solid fa-paper-plane"></i> Hire Me</a>
+    </div>
+  </section>
+  <!-- About Me -->
+  <section class="glow-box" id="about">
+    <div class="section-title">About Me</div>
+    <div class="about-bio">
+      Hi, I'm Sachin Singh, a passionate cybersecurity enthusiast and tech visionary. I thrive on curiosity, creative problem-solving, and a relentless drive to understand how things work beneath the surface. My journey is fueled by a love for ethical hacking, open-source, and a mission to make the digital world safer for everyone.
+    </div>
+    <div class="traits-list">
+      <div class="trait">Analytical</div>
+      <div class="trait">Curious</div>
+      <div class="trait">Persistent</div>
+      <div class="trait">Innovative</div>
+      <div class="trait">Collaborative</div>
+      <div class="trait">Detail-Oriented</div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <strong>2018</strong> - Discovered a passion for computers and technology in high school.
+        </div>
+      </div>
+      <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <strong>2020</strong> - Started learning programming and cybersecurity basics.
+        </div>
+      </div>
+      <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <strong>2022</strong> - Completed first CTFs, joined TryHackMe & Hack The Box.
+        </div>
+      </div>
+      <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <strong>2023</strong> - Built open-source security tools and contributed to bug bounty programs.
+        </div>
+      </div>
+      <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <strong>2024</strong> - Pursuing advanced certifications and sharing knowledge through blogs.
+        </div>
+      </div>
+    </div>
+    <div class="quote-anim">
+      “Hacking isn’t about breaking systems, it’s about understanding them.”
+    </div>
+  </section>
+  <!-- Skills & Tools -->
+  <section class="glow-box" id="skills">
+    <div class="section-title">Skills & Tools</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-title">Programming Languages</div>
+        <div class="skill-meter"><div class="skill-bar" style="width: 90%"></div></div>
+        <div class="skill-list">
+          <div class="skill-item">Python</div>
+          <div class="skill-item">C++</div>
+          <div class="skill-item">JavaScript</div>
+          <div class="skill-item">Java</div>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-title">Security Tools</div>
+        <div class="skill-meter"><div class="skill-bar" style="width: 80%"></div></div>
+        <div class="skill-list">
+          <div class="skill-item">Wireshark</div>
+          <div class="skill-item">Burp Suite</div>
+          <div class="skill-item">Nmap</div>
+          <div class="skill-item">Hydra</div>
+          <div class="skill-item">Metasploit</div>
+          <div class="skill-item">JohnTheRipper</div>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-title">Other</div>
+        <div class="skill-meter"><div class="skill-bar" style="width: 75%"></div></div>
+        <div class="skill-list">
+          <div class="skill-item">Linux</div>
+          <div class="skill-item">GitHub</div>
+          <div class="skill-item">OSINT</div>
+          <div class="skill-item">Web Security</div>
+          <div class="skill-item">Bug Bounty</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Projects -->
+  <section class="glow-box" id="projects">
+    <div class="section-title">Projects</div>
+    <div class="carousel-container">
+      <div class="carousel" id="projectCarousel">
+        <!-- Project Cards (JS will populate) -->
+      </div>
+    </div>
+    <!-- Project Modal -->
+    <div class="modal-bg" id="projectModalBg">
+      <div class="modal-content" id="projectModalContent">
+        <button class="modal-close" id="projectModalClose"><i class="fa-solid fa-xmark"></i></button>
+        <!-- Modal Content (JS will populate) -->
+      </div>
+    </div>
+  </section>
+  <!-- Certifications & Achievements -->
+  <section class="glow-box" id="certifications">
+    <div class="section-title">Certifications & Achievements</div>
+    <div class="cert-timeline">
+      <div class="cert-event">
+        <div class="cert-dot"></div>
+        <div class="cert-content">
+          <div class="cert-badge"><i class="fa-solid fa-shield-halved"></i></div>
+          <div>
+            <strong>eJPT (Junior Penetration Tester)</strong><br>
+            <span>INE Security</span>
+          </div>
+          <img class="cert-img" src="https://www.ine.com/_next/image?url=%2Fimages%2Fcerts%2Fejpt.png&w=256&q=75" alt="eJPT Certificate">
+        </div>
+      </div>
+      <div class="cert-event">
+        <div class="cert-dot"></div>
+        <div class="cert-content">
+          <div class="cert-badge"><i class="fa-brands fa-hackerrank"></i></div>
+          <div>
+            <strong>TryHackMe Top 1%</strong><br>
+            <span>TryHackMe</span>
+          </div>
+          <img class="cert-img" src="https://tryhackme-images.s3.amazonaws.com/badges/tryhackme-badge.png" alt="TryHackMe Badge">
+        </div>
+      </div>
+      <div class="cert-event">
+        <div class="cert-dot"></div>
+        <div class="cert-content">
+          <div class="cert-badge"><i class="fa-brands fa-hack-the-box"></i></div>
+          <div>
+            <strong>Hack The Box Pro Hacker</strong><br>
+            <span>Hack The Box</span>
+          </div>
+          <img class="cert-img" src="https://www.hackthebox.com/images/htb-badge.png" alt="HTB Badge">
+        </div>
+      </div>
+    </div>
+    <div class="xp-bar-container">
+      <div class="xp-bar" style="width: 70%"></div>
+    </div>
+    <div style="text-align:center; color:var(--cyber-green); font-family:'Orbitron',sans-serif; margin-top:0.5rem;">
+      Level 7 &nbsp;|&nbsp; 1400 XP / 2000 XP
+    </div>
+  </section>
+  <!-- Blogs / Articles -->
+  <section class="glow-box" id="blogs">
+    <div class="section-title">Blogs & Articles</div>
+    <div class="blog-list" id="blogList">
+      <!-- Blog Cards (JS will populate) -->
+    </div>
+  </section>
+  <!-- Resume / CV -->
+  <section class="glow-box resume-section" id="resume">
+    <div class="section-title">Resume / CV</div>
+    <div class="resume-btns">
+      <a class="resume-btn" href="Sachin_Singh_Resume.pdf" download><i class="fa-solid fa-file-arrow-down"></i> Download PDF</a>
+      <button class="resume-btn" onclick="filterResume('education')">Education Only</button>
+      <button class="resume-btn" onclick="filterResume('projects')">Projects Only</button>
+      <button class="resume-btn" onclick="filterResume('all')">Show All</button>
+    </div>
+    <div id="resumeContent">
+      <!-- Interactive Resume (JS will populate) -->
+    </div>
+  </section>
+  <!-- Contact Me -->
+  <section class="glow-box" id="contact">
+    <div class="section-title">Contact Me</div>
+    <div class="contact-section">
+      <form class="contact-form" id="contactForm" autocomplete="off">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required maxlength="64">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required maxlength="64">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" required maxlength="500"></textarea>
+        <label for="file">Attachment (optional)</label>
+        <input type="file" id="file" name="file" accept=".pdf,.jpg,.png,.txt">
+        <div class="captcha-box">
+          <span id="captchaQuestion"></span>
+          <input type="text" id="captchaInput" required placeholder="Answer" style="width:60px;">
+        </div>
+        <button type="submit"><i class="fa-solid fa-paper-plane"></i> Send</button>
+        <div id="contactStatus" style="margin-top:1rem; color:var(--cyber-green);"></div>
+      </form>
+      <div class="contact-map">
+        <div class="city-glow"></div>
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=72.775%2C18.900%2C72.985%2C19.300&amp;layer=mapnik"
+          style="width:100%;height:100%;border:none;filter:brightness(0.8) drop-shadow(0 0 12px var(--cyber-green));"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Mumbai, India Map"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+  <!-- Live Chatbot Widget -->
+  <div class="chatbot-widget" id="chatbotWidget" style="display:none;">
+    <div class="chatbot-header">
+      <span><i class="fa-solid fa-robot"></i> Cyber AI Assistant</span>
+      <button onclick="toggleChatbot()" style="background:none;border:none;color:inherit;font-size:1.2rem;cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages">
+      <div><span style="color:var(--cyber-green);">[AI]</span> Hi! I'm your digital hacker companion. Ask me anything about Sachin's portfolio or cybersecurity!</div>
+    </div>
+    <div class="chatbot-input">
+      <input type="text" id="chatbotInput" placeholder="Type your message...">
+      <button onclick="sendChatbotMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+    </div>
+  </div>
+  <button onclick="toggleChatbot()" style="position:fixed;bottom:32px;right:32px;z-index:1999;background:linear-gradient(90deg,var(--neon-blue),var(--cyber-green));color:#181a1b;border:none;border-radius:50%;width:54px;height:54px;box-shadow:0 0 16px var(--cyber-green);font-size:1.7rem;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+    <i class="fa-solid fa-robot"></i>
+  </button>
+  <!-- Terminal Mode -->
+  <section class="terminal-section" id="terminal">
+    <div class="terminal-header">Cyber Terminal Mode</div>
+    <div class="terminal-output" id="terminalOutput">
+      Type <span style="color:var(--cyber-green);">help</span> to see available commands.
+    </div>
+    <div class="terminal-input-row">
+      <span class="terminal-prompt">sachin@portfolio:~$</span>
+      <input class="terminal-input" id="terminalInput" type="text" autocomplete="off" spellcheck="false" placeholder="Type a command...">
+    </div>
+  </section>
+  <!-- GitHub Stats -->
+  <section class="glow-box" id="github">
+    <div class="section-title">GitHub Stats</div>
+    <div class="github-stats" id="githubStats">
+      <!-- GitHub Cards (JS will populate) -->
+    </div>
+  </section>
+  <!-- Code Playground -->
+  <section class="playground-section" id="playground">
+    <div class="playground-header">Code Playground</div>
+    <textarea class="playground-editor" id="playgroundEditor" spellcheck="false">// Write Python code here and run it!
+print("Hello, Cyber World!")</textarea>
+    <div class="playground-btns">
+      <button class="playground-btn" onclick="runPlayground()">Run</button>
+      <button class="playground-btn" onclick="resetPlayground()">Reset</button>
+    </div>
+    <div class="playground-output" id="playgroundOutput"></div>
+  </section>
+  <script>
+    // Matrix Background Animation
+    const canvas = document.getElementById('matrix-bg');
+    const ctx = canvas.getContext('2d');
+    let w = window.innerWidth, h = window.innerHeight;
+    canvas.width = w; canvas.height = h;
+    let cols = Math.floor(w / 20) + 1;
+    let ypos = Array(cols).fill(0);
+    function matrix() {
+      ctx.fillStyle = '#12121222';
+      ctx.fillRect(0, 0, w, h);
+      ctx.font = '18px monospace';
+      ctx.fillStyle = '#0ff0fc';
+      ypos.forEach((y, ind) => {
+        const text = String.fromCharCode(0x30A0 + Math.random() * 96);
+        ctx.fillText(text, ind * 20, y);
+        if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
+        else ypos[ind] = y + 20;
+      });
+    }
+    setInterval(matrix, 50);
+    window.addEventListener('resize', () => {
+      w = window.innerWidth; h = window.innerHeight;
+      canvas.width = w; canvas.height = h;
+      cols = Math.floor(w / 20) + 1;
+      ypos = Array(cols).fill(0);
+    });
+
+    // Dark/Light Mode Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.onclick = function() {
+      const html = document.documentElement;
+      if (html.getAttribute('data-theme') === 'dark') {
+        html.setAttribute('data-theme', 'light');
+        themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+      }
+      themeToggle.classList.add('glitch');
+      setTimeout(() => themeToggle.classList.remove('glitch'), 400);
+    };
+
+    // Projects Data & Carousel
+    const projects = [
+      {
+        title: "CyberScan",
+        tags: ["Python", "Nmap", "Security"],
+        desc: "A fast, open-source network scanner with real-time vulnerability detection.",
+        github: "https://github.com/sachinsingh99/cyberscan",
+        demo: "#",
+        screenshot: "https://user-images.githubusercontent.com/99149209/scan.png",
+        stack: "Python, Nmap, Flask, Bootstrap",
+        challenges: "Parsing large scan results efficiently, real-time reporting, safe multi-threading."
+      },
+      {
+        title: "WebHawk",
+        tags: ["JavaScript", "Web Security", "OSINT"],
+        desc: "Browser extension for automated web reconnaissance and OSINT gathering.",
+        github: "https://github.com/sachinsingh99/webhawk",
+        demo: "#",
+        screenshot: "https://user-images.githubusercontent.com/99149209/webhawk.png",
+        stack: "JavaScript, Chrome APIs, Node.js",
+        challenges: "Cross-browser compatibility, privacy-respecting data collection."
+      },
+      {
+        title: "CryptoVault",
+        tags: ["C++", "Encryption", "Linux"],
+        desc: "A CLI tool for secure file encryption and decryption on Linux.",
+        github: "https://github.com/sachinsingh99/cryptovault",
+        demo: "#",
+        screenshot: "https://user-images.githubusercontent.com/99149209/cryptovault.png",
+        stack: "C++, OpenSSL",
+        challenges: "Implementing strong encryption, user-friendly CLI, error handling."
+      }
+    ];
+    const carousel = document.getElementById('projectCarousel');
+    function renderProjects() {
+      carousel.innerHTML = '';
+      projects.forEach((p, i) => {
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        card.innerHTML = `
+          <div class="project-title">${p.title}</div>
+          <div class="project-tags">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>
+          <div class="project-desc">${p.desc}</div>
+          <div class="project-links">
+            <a href="${p.github}" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="${p.demo}" target="_blank" title="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        `;
+        card.onclick = () => openProjectModal(i);
+        carousel.appendChild(card);
+      });
+    }
+    renderProjects();
+    // Project Modal
+    const modalBg = document.getElementById('projectModalBg');
+    const modalContent = document.getElementById('projectModalContent');
+    function openProjectModal(idx) {
+      const p = projects[idx];
+      modalContent.innerHTML = `
+        <button class="modal-close" id="projectModalClose"><i class="fa-solid fa-xmark"></i></button>
+        <img class="modal-screenshot" src="${p.screenshot}" alt="${p.title} Screenshot" onerror="this.style.display='none'">
+        <div class="project-title">${p.title}</div>
+        <div class="project-tags">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>
+        <div class="project-desc">${p.desc}</div>
+        <div class="modal-stack"><strong>Tech Stack:</strong> ${p.stack}</div>
+        <div class="modal-challenges"><strong>Challenges Solved:</strong> ${p.challenges}</div>
+        <div class="project-links">
+          <a href="${p.github}" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="${p.demo}" target="_blank" title="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+      `;
+      modalBg.classList.add('active');
+      document.getElementById('projectModalClose').onclick = closeProjectModal;
+    }
+    function closeProjectModal() {
+      modalBg.classList.remove('active');
+    }
+    modalBg.onclick = function(e) {
+      if (e.target === modalBg) closeProjectModal();
+    };
+
+    // Blogs Data
+    const blogs = [
+      {
+        title: "Ethical Hacking 101: Getting Started",
+        tags: ["Ethical Hacking", "Beginner"],
+        desc: "A practical guide for aspiring hackers to start their journey the right way.",
+        link: "#"
+      },
+      {
+        title: "Top 5 Cybersecurity Trends in 2024",
+        tags: ["Cybersecurity", "Trends"],
+        desc: "Stay ahead with the latest trends shaping the world of cyber defense.",
+        link: "#"
+      },
+      {
+        title: "Review: Burp Suite vs. OWASP ZAP",
+        tags: ["Tool Review", "Web Security"],
+        desc: "Comparing two of the most popular web security testing tools.",
+        link: "#"
+      },
+      {
+        title: "Exploring the Dark Web: Myths & Realities",
+        tags: ["Dark Web", "OSINT"],
+        desc: "Debunking common myths and sharing insights from real investigations.",
+        link: "#"
+      }
+    ];
+    const blogList = document.getElementById('blogList');
+    function renderBlogs() {
+      blogList.innerHTML = '';
+      blogs.forEach(b => {
+        const card = document.createElement('div');
+        card.className = 'blog-card';
+        card.innerHTML = `
+          <div class="blog-title">${b.title}</div>
+          <div class="blog-tags">${b.tags.map(t => `<span class="blog-tag">${t}</span>`).join('')}</div>
+          <div class="blog-desc">${b.desc}</div>
+          <a class="blog-link" href="${b.link}" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Read More</a>
+        `;
+        blogList.appendChild(card);
+      });
+    }
+    renderBlogs();
+
+    // Resume Interactive Filter
+    const resumeData = {
+      education: [
+        { title: "B.Tech in Computer Science", org: "XYZ University", year: "2021-2025", desc: "Specialization in Cybersecurity & Networks." }
+      ],
+      projects: [
+        { title: "CyberScan", org: "Personal", year: "2023", desc: "Open-source network scanner with real-time vulnerability detection." },
+        { title: "WebHawk", org: "Personal", year: "2022", desc: "Browser extension for web reconnaissance and OSINT." }
+      ],
+      experience: [
+        { title: "Security Research Intern", org: "CyberSec Labs", year: "2023", desc: "Worked on penetration testing and vulnerability research." }
+      ]
+    };
+    function renderResume(filter = 'all') {
+      const el = document.getElementById('resumeContent');
+      let html = '';
+      if (filter === 'all' || filter === 'education') {
+        html += `<div style="margin-bottom:1.2rem;"><strong>Education</strong><ul>`;
+        resumeData.education.forEach(e => {
+          html += `<li><b>${e.title}</b> - ${e.org} (${e.year})<br><span style="color:var(--cyber-green);">${e.desc}</span></li>`;
+        });
+        html += `</ul></div>`;
+      }
+      if (filter === 'all' || filter === 'projects') {
+        html += `<div style="margin-bottom:1.2rem;"><strong>Projects</strong><ul>`;
+        resumeData.projects.forEach(p => {
+          html += `<li><b>${p.title}</b> - ${p.org} (${p.year})<br><span style="color:var(--neon-blue);">${p.desc}</span></li>`;
+        });
+        html += `</ul></div>`;
+      }
+      if (filter === 'all') {
+        html += `<div style="margin-bottom:1.2rem;"><strong>Experience</strong><ul>`;
+        resumeData.experience.forEach(x => {
+          html += `<li><b>${x.title}</b> - ${x.org} (${x.year})<br><span style="color:var(--cyber-purple);">${x.desc}</span></li>`;
+        });
+        html += `</ul></div>`;
+      }
+      el.innerHTML = html;
+    }
+    function filterResume(type) {
+      renderResume(type);
+    }
+    renderResume();
+
+    // Contact Form: Simple CAPTCHA
+    function generateCaptcha() {
+      const a = Math.floor(Math.random() * 10) + 1;
+      const b = Math.floor(Math.random() * 10) + 1;
+      document.getElementById('captchaQuestion').textContent = `What is ${a} + ${b}?`;
+      document.getElementById('captchaInput').dataset.answer = a + b;
+    }
+    generateCaptcha();
+    document.getElementById('contactForm').onsubmit = function(e) {
+      e.preventDefault();
+      const answer = document.getElementById('captchaInput').value.trim();
+      const correct = document.getElementById('captchaInput').dataset.answer;
+      const status = document.getElementById('contactStatus');
+      if (answer != correct) {
+        status.textContent = "Incorrect CAPTCHA. Please try again.";
+        status.style.color = "var(--accent)";
+        generateCaptcha();
+        return false;
+      }
+      status.textContent = "Message sent! (Demo only)";
+      status.style.color = "var(--cyber-green)";
+      this.reset();
+      generateCaptcha();
+      return false;
+    };
+
+    // Chatbot Widget
+    function toggleChatbot() {
+      const widget = document.getElementById('chatbotWidget');
+      widget.style.display = widget.style.display === 'none' ? 'flex' : 'none';
+    }
+    function sendChatbotMessage() {
+      const input = document.getElementById('chatbotInput');
+      const msg = input.value.trim();
+      if (!msg) return;
+      const messages = document.getElementById('chatbotMessages');
+      messages.innerHTML += `<div><span style="color:var(--neon-blue);">[You]</span> ${msg}</div>`;
+      input.value = '';
+      // Simulate AI response
+      setTimeout(() => {
+        let response = "I'm here to help! (This is a demo AI assistant.)";
+        if (/project|work/i.test(msg)) response = "Check out the Projects section for Sachin's latest work!";
+        else if (/contact|email/i.test(msg)) response = "You can contact Sachin via the Contact Me section below.";
+        else if (/cert|achieve/i.test(msg)) response = "Sachin has eJPT, TryHackMe, and Hack The Box achievements!";
+        else if (/resume|cv/i.test(msg)) response = "You can download Sachin's resume in the Resume section.";
+        else if (/github/i.test(msg)) response = "GitHub stats and links are in the GitHub Stats section.";
+        else if (/terminal/i.test(msg)) response = "Try the Cyber Terminal Mode for a hacker-style experience!";
+        messages.innerHTML += `<div><span style="color:var(--cyber-green);">[AI]</span> ${response}</div>`;
+        messages.scrollTop = messages.scrollHeight;
+      }, 700);
+      messages.scrollTop = messages.scrollHeight;
+    }
+    document.getElementById('chatbotInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') sendChatbotMessage();
+    });
+
+    // Terminal Mode
+    const terminalOutput = document.getElementById('terminalOutput');
+    const terminalInput = document.getElementById('terminalInput');
+    const terminalCommands = {
+      help: "Available commands:\nabout - About Sachin\nskills - List skills\nprojects - List projects\ncerts - Certifications\nresume - Resume info\ngithub - GitHub stats\nclear - Clear terminal",
+      about: "Sachin Singh is an aspiring ethical hacker and cybersecurity learner passionate about tech and digital safety.",
+      skills: "Python, C++, JavaScript, Java, Wireshark, Burp Suite, Nmap, Hydra, Metasploit, JohnTheRipper, Linux, GitHub, OSINT, Web Security, Bug Bounty.",
+      projects: projects.map(p => `- ${p.title}: ${p.desc}`).join('\n'),
+      certs: "eJPT (INE), TryHackMe Top 1%, Hack The Box Pro Hacker.",
+      resume: "B.Tech in Computer Science (2021-2025), Security Research Intern at CyberSec Labs.",
+      github: "GitHub: https://github.com/sachinsingh99",
+      clear: ""
+    };
+    terminalInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        const cmd = terminalInput.value.trim();
+        terminalOutput.innerHTML += `\n<span style="color:var(--neon-blue);">sachin@portfolio:~$</span> ${cmd}`;
+        if (cmd in terminalCommands) {
+          terminalOutput.innerHTML += `\n${terminalCommands[cmd]}`;
+        } else if (cmd === 'clear') {
+          terminalOutput.innerHTML = '';
+        } else {
+          terminalOutput.innerHTML += `\nCommand not found. Type <span style="color:var(--cyber-green);">help</span>.`;
+        }
+        terminalInput.value = '';
+        terminalOutput.scrollTop = terminalOutput.scrollHeight;
+      }
+    });
+
+    // GitHub Stats (Demo)
+    const githubStats = [
+      {
+        title: "Contributions (2024)",
+        value: "1,234",
+        desc: "Total commits this year.",
+        icon: "fa-solid fa-code-branch"
+      },
+      {
+        title: "Most Used Languages",
+        value: "Python, JavaScript",
+        desc: "Top languages in public repos.",
+        icon: "fa-solid fa-code"
+      },
+      {
+        title: "Pinned Repos",
+        value: "CyberScan, WebHawk",
+        desc: "Featured open-source projects.",
+        icon: "fa-brands fa-github"
+      }
+    ];
+    const githubStatsEl = document.getElementById('githubStats');
+    function renderGitHubStats() {
+      githubStatsEl.innerHTML = '';
+      githubStats.forEach(stat => {
+        const card = document.createElement('div');
+        card.className = 'github-card';
+        card.innerHTML = `
+          <div style="font-size:2rem;color:var(--neon-blue);margin-bottom:0.5rem;"><i class="${stat.icon}"></i></div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:1.1rem;color:var(--cyber-green);">${stat.title}</div>
+          <div style="font-size:1.5rem;color:var(--cyber-purple);margin:0.5rem 0;">${stat.value}</div>
+          <div style="color:var(--light-gray);font-size:1rem;">${stat.desc}</div>
+        `;
+        githubStatsEl.appendChild(card);
+      });
+    }
+    renderGitHubStats();
+
+    // Code Playground (Python, sandboxed via Skulpt)
+    function runPlayground() {
+      const code = document.getElementById('playgroundEditor').value;
+      const output = document.getElementById('playgroundOutput');
+      output.textContent = "Running...";
+      if (window.Sk) {
+        Sk.configure({output: (text) => output.textContent += text, read: (x) => {throw "File not found: "+x;}});
+        Sk.misceval.asyncToPromise(() => Sk.importMainWithBody("<stdin>", false, code, true))
+          .then(() => {}, (err) => { output.textContent += "\n" + err.toString(); });
+      } else {
+        output.textContent = "Python runner not loaded. (Demo only)";
+      }
+    }
+    function resetPlayground() {
+      document.getElementById('playgroundEditor').value = '// Write Python code here and run it!\nprint("Hello, Cyber World!")';
+      document.getElementById('playgroundOutput').textContent = '';
+    }
+    // Load Skulpt for Python sandbox
+    (function(){
+      var s = document.createElement('script');
+      s.src = "https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js";
+      s.onload = function() {
+        var s2 = document.createElement('script');
+        s2.src = "https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js";
+        document.body.appendChild(s2);
+      };
+      document.body.appendChild(s);
+    })();
+  </script>
+</body>
+</html>
